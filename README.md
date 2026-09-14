@@ -1,55 +1,91 @@
 # EurekaBank Java Microservices
 
-Java SOAP and RESTful variants of EurekaBank with the backend split into focused banking services.
+This project splits the EurekaBank Java backend into focused SOAP and REST services.
 
 ## Overview
 
-This version decomposes the banking backend into authentication, accounts, operations, and transfer services while retaining console, desktop, web, and Android clients.
+The backend is divided into authentication, accounts, operations, and transfer services. Console, desktop, web, and Android clients show how both service styles can be used.
 
-## Architectures
+## Main Features
 
-- Java SOAP microservices
-- Java RESTful microservices
+- User authentication service
+- Account and balance service
+- Deposit and withdrawal service
+- Money transfer service
+- Movement queries
+- SOAP and REST client examples
+
+## Architecture
+
+```mermaid
+flowchart LR
+    A[Client Applications] --> B[SOAP or REST Services]
+    B --> C[Authentication]
+    B --> D[Accounts]
+    B --> E[Operations]
+    B --> F[Transfers]
+    C --> G[(MySQL)]
+    D --> G
+    E --> G
+    F --> G
+```
+
+The SOAP and REST versions are separate. Both divide the main banking tasks into service modules.
 
 ## Applications
 
-- Console clients
-- Java desktop clients
-- JSP/Servlet web clients
-- Android/Kotlin mobile clients
-- SOAP and REST backends split into authentication, accounts, operations, transfer, and compatibility services
+| Application | Technology | Purpose |
+| --- | --- | --- |
+| SOAP services | Java and JAX-WS | Provide separate banking services |
+| REST services | Java and JAX-RS | Provide separate banking services |
+| Console clients | Java | Use services from a terminal |
+| Desktop clients | Java Swing | Provide a desktop interface |
+| Web clients | JSP and Servlets | Provide browser access |
+| Mobile clients | Kotlin / Android | Provide mobile access |
 
-## Technologies
+## Tech Stack
 
-- Java, Maven, Jakarta EE, JAX-WS and JAX-RS
-- Kotlin, Android and Gradle
+### Backend
+
+- Java
+- Jakarta EE
+- JAX-WS
+- JAX-RS
+
+### Clients
+
+- Java Swing
 - JSP and Servlets
-- MySQL and SQL scripts
+- Kotlin and Android
+
+### Database
+
+- MySQL
+- SQL setup scripts
+
+### Tools
+
+- Maven
+- Gradle
 
 ## Project Structure
 
-- `01.SOAP_JAVA_EUREKABANK_GR05/`
-- `03.RESTFUL_JAVA_EUREKABANK_GR05/`
+```text
+eurekabank-java-microservices/
+├── 01.SOAP_JAVA_EUREKABANK_GR05/
+└── 03.RESTFUL_JAVA_EUREKABANK_GR05/
+```
 
-Each architecture contains its clients and a server directory with the individual service modules.
+Each architecture has client modules and separate backend service modules.
 
-## Features
+## Getting Started
 
-- Authentication service
-- Account and balance service
-- Deposit and withdrawal operations
-- Transfer service
-- Movement queries
-- Clients demonstrating both SOAP and REST integrations
+Prepare the database with the included SQL scripts. Set `DB_URL`, `DB_USER`, and `DB_PASSWORD` as shown in `.env.example`. Build and start the required service modules from their `pom.xml` folders. Then start the selected client. Open Android clients in Android Studio.
 
-## Configuration
+## Screenshots
 
-Database services read `DB_URL`, `DB_USER`, and `DB_PASSWORD` from the environment. Use `.env.example` only as a safe reference for required variable names.
-
-## Running the Project
-
-Provision the database using the included SQL scripts. Build and start the required service modules from their `pom.xml` directories, then configure and run the desired client. Android clients should be opened using Android Studio and their included Gradle projects.
+Screenshots will be added soon.
 
 ## Academic Context
 
-This group academic project explores microservice decomposition and compares SOAP with RESTful communication in a banking domain.
+This group project was developed as part of a university course. The main goal was to practice service separation and compare SOAP with REST.
